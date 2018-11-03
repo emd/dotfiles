@@ -14,10 +14,28 @@ Plugin 'VundleVim/Vundle.vim'
 " wombat256 color scheme
 Plugin 'vim-scripts/wombat256.vim'
 
+" Lightweight Powerline clone
+Plugin 'itchyny/lightline.vim'
+set laststatus=2
+let g:lightline = {'colorscheme': 'wombat'}
+
 " Efficient, simple python folding
 Plugin 'tmhedberg/SimpylFold'
 " let g:SimpylFold_docstring_preview = 0
 nnoremap f za
+
+" Syntax checking
+Plugin 'vim-syntastic/syntastic.git'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Fast, as-you-type, fuzzy-search code completion
+Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
