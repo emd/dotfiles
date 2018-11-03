@@ -3,6 +3,10 @@
 alias ls='ls -F --color=auto'
 alias ll='ls -lh'
 
+# Conda:
+# ------
+export PATH=$HOME/miniconda3/bin:$HOME
+
 # ANSI color codes:
 # -----------------
 # Regular
