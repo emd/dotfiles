@@ -2,10 +2,11 @@
 # --------
 alias ls='ls -F --color=auto'
 alias ll='ls -lh'
+alias ipython='ipython --pylab'
 
 # Conda:
 # ------
-export PATH=$HOME/miniconda3/bin:$HOME
+export PATH=$HOME/miniconda3/bin:$PATH
 
 # ANSI color codes:
 # -----------------
