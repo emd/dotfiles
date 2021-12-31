@@ -4,9 +4,19 @@ alias ls='ls -F --color=auto'
 alias ll='ls -lh'
 alias ipython='ipython --pylab'
 
-# Conda:
-# ------
-export PATH=$HOME/miniconda3/bin:$PATH
+# Conda (use below instead of automatic initialization after installation):
+# -------------------------------------------------------------------------
+__conda_setup="$("${HOME}/miniconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "${HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "${HOME}/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="${HOME}/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 
 # ANSI color codes:
 # -----------------
@@ -41,8 +51,11 @@ source $HOME/.git-prompt.sh
 
 function __prompt_command()
 {
+    # Conda environment
+    PS1="(${CONDA_DEFAULT_ENV}) "
+
     # Basic information (user@host pwd)
-    PS1="${Cyan}\u@\h ${Yellow}\w${Color_Off}"
+    PS1+="${Cyan}\u@\h ${Yellow}\w${Color_Off}"
 
     # If in a git repo, output git status information
     local git_status="`git status -unormal 2>&1`"
