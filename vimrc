@@ -134,3 +134,6 @@ set undolevels=1000
 set spelllang=en_us
 set spellfile=$HOME/.vim/spell/en.utf-8.add
 set spell
+
+" To enable pasting
+set clipboard=unnamed
