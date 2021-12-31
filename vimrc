@@ -11,13 +11,13 @@ call vundle#begin('~/.vim/bundle')
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" wombat256 color scheme
-Plugin 'vim-scripts/wombat256.vim'
+" solarized color scheme
+Plugin 'altercation/vim-colors-solarized'
 
 " Lightweight Powerline clone
 Plugin 'itchyny/lightline.vim'
 set laststatus=2
-let g:lightline = {'colorscheme': 'wombat'}
+let g:lightline = {'colorscheme': 'solarized'}
 
 " Efficient, simple python folding
 Plugin 'tmhedberg/SimpylFold'
@@ -46,10 +46,6 @@ filetype plugin indent on    " required
 "========================
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
-
-" Mouse and backspace
-set mouse=a
-set bs=2    " make backspace behave like normal again
 
 " Rebind <Leader> key
 " It is easier to reach than the default leader key (i.e. backslash) and
@@ -110,15 +106,21 @@ highlight ColorColumn ctermbg=233
 
 " Show whitespace
 " (MUST be inserted BEFORE the colorscheme command)
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
 
 " Color scheme
-set t_Co=256
-colorscheme wombat256mod
+let g:solarized_termcolors=256
+let g:solarized_italic=0
+
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+
+colorscheme solarized
 
 " Enable syntax highlighting
 " You need to reload this file for the change to apply
@@ -137,3 +139,6 @@ set spell
 
 " To enable pasting
 set clipboard=unnamed
+
+" Redraw to eliminate any artifacts from startup buffer(s)
+autocmd VimEnter * :redraw!
