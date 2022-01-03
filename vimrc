@@ -14,10 +14,13 @@ Plugin 'VundleVim/Vundle.vim'
 " solarized color scheme
 Plugin 'altercation/vim-colors-solarized'
 
-" Lightweight Powerline clone
-Plugin 'itchyny/lightline.vim'
-set laststatus=2
-let g:lightline = {'colorscheme': 'solarized'}
+" Git wrapper (required for airline to retrieve git information)
+Plugin 'tpope/vim-fugitive'
+
+" Lean & mean status/tabline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts = 1
 
 " Efficient, simple python folding
 Plugin 'tmhedberg/SimpylFold'
@@ -117,11 +120,13 @@ autocmd BufWinLeave * call clearmatches()
 " Color scheme
 let g:solarized_termcolors=256
 let g:solarized_italic=0
+let g:airline_theme = 'solarized'
 
 if has('gui_running')
     set background=light
 else
     set background=dark
+    let g:airline_solarized_bg = 'dark'
 endif
 
 colorscheme solarized
